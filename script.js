@@ -15,24 +15,18 @@ let selectedAnswer = null;
 let hasAnswered = false;
 
 function startGame() {
-        fetch('/questions.json')
-        .then(response => response.json())
-        .then(data => {
-                questions = selectRandomQuestions(data, 5);
-                currentQuestionIndex = 0;
-                score = 0;
-                selectedAnswer = null;
-                hasAnswered = false;
-                nextButton.classList.add('hide');
-                nextButton.style.display = ''; // Ensure the Next button is reset to its default display property
-                feedbackElement.classList.add('hide');
-                feedbackElement.innerText = '';
-                resultContainer.style.display = 'none';
-                questionContainer.style.display = 'block';
-                showQuestion(questions[currentQuestionIndex]);
-        })
-        .catch(error => console.error('Error fetching questions:', error));
-}        
+    currentQuestionIndex = 0;
+    score = 0;
+    selectedAnswer = null;
+    hasAnswered = false;
+    nextButton.classList.add('hide');
+    nextButton.style.display = ''; // Ensure the Next button is reset to its default display property
+    feedbackElement.classList.add('hide');
+    feedbackElement.innerText = '';
+    resultContainer.style.display = 'none';
+    questionContainer.style.display = 'block';
+    showQuestion(questions[currentQuestionIndex]);
+}
 
 function showQuestion(question) {
     questionElement.innerText = question.question;
@@ -154,5 +148,13 @@ restartButton.addEventListener('click', () => {
         })
         .catch(error => console.error('Error fetching questions:', error));
 });
+
+fetch('/questions.json')
+    .then(response => response.json())
+    .then(data => {
+        questions = selectRandomQuestions(data, 5);
+        startGame();
+    })
+    .catch(error => console.error('Error fetching questions:', error));
 
 nextButton.addEventListener('click', handleNextQuestion);
