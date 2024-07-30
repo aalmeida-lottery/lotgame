@@ -48,6 +48,26 @@ To Change the number of questions presented in the quiz, you need to modify the 
    ```javascript
    if (percentage >= 70) {  // 70% is the passing percentage
    ```
+
+5. Additionally, update the result message to refelct the new passing percentage. Find and update the following lines:
+   ```javascript
+   if (percentage >= 80) {
+       resultMessage.innerText = 'Congratulations, you passed!';
+   } else {
+       resultMessage.innerText = 'Sorry, you did not pass. \nYou need a score of 80% or higher to pass. \nBetter luck next time!';
+   }
+   ```
+
+   Change them to:
+   ```javascript
+   if (percentage >= 70) { //70% is the passing percentage
+       resultMessage.innerText = 'Congratulations, you passed!';
+   } else {
+       resultMessage.innerText = 'Sorry, you did not pass. \nYou need a score of 70% or higher to pass. \nBetter luck next time! ';
+   }
+   ```
+
+
 5. Click the "Commit changes" button to save your changes.
 
 #### Adjusting Feedback Messages
