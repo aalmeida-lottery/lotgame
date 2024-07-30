@@ -32,8 +32,6 @@ function startGame() {
     fetch('./questions.json')
     .then(response => response.json())
     .then(data => {
-        // console.log(data);
-        // console.log(data[0]);
         questions = selectRandomQuestions(data, 5);
         // console.log(questions.length);
         currentQuestionIndex = 0;
