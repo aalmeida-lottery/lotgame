@@ -304,7 +304,7 @@ restartButton.addEventListener('click', () => {
     fetch('/questions')
         .then(response => response.json())
         .then(data => {
-            questions = data;
+            questions = selectRandomQuestions(data, 5);
             startGame();
         })
         .catch(error => console.error('Error fetching questions:', error));
@@ -313,7 +313,7 @@ restartButton.addEventListener('click', () => {
 fetch('/questions.json')
     .then(response => response.json())
     .then(data => {
-        questions = data;
+        questions = selectRandomQuestions(data, 5);
         startGame();
     })
     .catch(error => console.error('Error fetching questions:', error));
