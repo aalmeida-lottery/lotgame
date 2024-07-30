@@ -160,7 +160,7 @@ fetch('/questions.json')
     .then(response => response.json())
     .then(data => {
         questions = selectRandomQuestions(data, 5);
-        //startGame();
+        startGame();
     })
     .catch(error => console.error('Error fetching questions:', error));
 
