@@ -185,6 +185,19 @@ let score = 0;
 let selectedAnswer = null;
 let hasAnswered = false;
 
+function shuffleArray(array) {
+    for (let i = array.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [array[i], array[j]] = [array[j], array[i]];
+    }
+    return array;
+}
+
+function selectRandomQuestions(allQuestions, numQuestions) {
+    const shuffled = shuffleArray([...allQuestions]);
+    return shuffled.slice(0, numQuestions);
+}
+
 function startGame() {
     fetch('./questions.json')
     .then(response => response.json())
@@ -298,19 +311,6 @@ function showResult() {
     } else {
         resultMessage.innerText = 'Sorry, you did not pass. Better luck next time! You need a score of 80% or higher to pass.';
     }
-}
-
-function shuffleArray(array) {
-    for (let i = array.length - 1; i > 0; i--) {
-        const j = Math.floor(Math.random() * (i + 1));
-        [array[i], array[j]] = [array[j], array[i]];
-    }
-    return array;
-}
-
-function selectRandomQuestions(allQuestions, numQuestions) {
-    const shuffled = shuffleArray([...allQuestions]);
-    return shuffled.slice(0, numQuestions);
 }
 
 restartButton.addEventListener('click', () => {
