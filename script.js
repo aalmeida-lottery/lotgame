@@ -138,6 +138,12 @@ function showResult() {
     scoreElement.innerText = `Your score: ${score}/${questions.length} (${percentage.toFixed(2)}%)`;
     if (percentage >= 80) {
         resultMessage.innerText = 'Congratulations, you passed!';
+        // Trigger confetti
+        confetti({
+            particleCount: 100,
+            spread: 70,
+            origin: { y: 0.6 }
+        });
     } else {
         resultMessage.innerText = 'Sorry, you did not pass. Better luck next time! You need a score of 80% or higher to pass.';
     }
