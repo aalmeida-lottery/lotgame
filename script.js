@@ -145,29 +145,9 @@ function showResult() {
             origin: { y: 0.6 }
         });
     } else {
-        resultMessage.innerText = 'Sorry, you did not pass. Better luck next time! You need a score of 80% or higher to pass.';
+        resultMessage.innerText = 'Sorry, you did not pass. \nYou need a score of 80% or higher to pass. \nBetter luck next time!';
     }
 }
-
-// restartButton.addEventListener('click', () => {
-//     fetch('/questions.json')
-//         .then(response => response.json())
-//         .then(data => {
-//             questions = selectRandomQuestions(data, 5);
-//             startGame();
-//         })
-//         .catch(error => console.error('Error fetching questions:', error));
-// });
-
-// fetch('/questions.json')
-//     .then(response => response.json())
-//     .then(data => {
-//         questions = selectRandomQuestions(data, 5);
-//         startGame();
-//     })
-//     .catch(error => console.error('Error fetching questions:', error));
-
-// nextButton.addEventListener('click', handleNextQuestion);
 
 restartButton.addEventListener('click', () => {
     startGame();
