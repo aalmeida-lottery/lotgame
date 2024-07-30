@@ -300,21 +300,21 @@ function showResult() {
     }
 }
 
-// restartButton.addEventListener('click', () => {
-//     fetch('/questions')
-//         .then(response => response.json())
-//         .then(data => {
-//             questions = data;
-//             startGame();
-//         })
-//         .catch(error => console.error('Error fetching questions:', error));
-// });
+restartButton.addEventListener('click', () => {
+    fetch('/questions')
+        .then(response => response.json())
+        .then(data => {
+            questions = data;
+            startGame();
+        })
+        .catch(error => console.error('Error fetching questions:', error));
+});
 
 fetch('/questions.json')
     .then(response => response.json())
     .then(data => {
         questions = data;
-        // startGame();
+        startGame();
     })
     .catch(error => console.error('Error fetching questions:', error));
 
