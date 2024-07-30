@@ -314,7 +314,7 @@ function showResult() {
 }
 
 restartButton.addEventListener('click', () => {
-    fetch('/questions')
+    fetch('/questions.json')
         .then(response => response.json())
         .then(data => {
             questions = selectRandomQuestions(data, 5);
