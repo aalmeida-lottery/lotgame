@@ -146,22 +146,22 @@ function selectRandomQuestions(allQuestions, numQuestions) {
     return shuffled.slice(0, numQuestions);
 }
 
-restartButton.addEventListener('click', () => {
-    fetch('/questions.json')
-        .then(response => response.json())
-        .then(data => {
-            questions = selectRandomQuestions(data, 5);
-            startGame();
-        })
-        .catch(error => console.error('Error fetching questions:', error));
-});
+// restartButton.addEventListener('click', () => {
+//     fetch('/questions.json')
+//         .then(response => response.json())
+//         .then(data => {
+//             questions = selectRandomQuestions(data, 5);
+//             startGame();
+//         })
+//         .catch(error => console.error('Error fetching questions:', error));
+// });
 
-// fetch('/questions.json')
-//     .then(response => response.json())
-//     .then(data => {
-//         questions = selectRandomQuestions(data, 5);
-//         startGame();
-//     })
-//     .catch(error => console.error('Error fetching questions:', error));
+fetch('/questions.json')
+    .then(response => response.json())
+    .then(data => {
+        questions = selectRandomQuestions(data, 5);
+        //startGame();
+    })
+    .catch(error => console.error('Error fetching questions:', error));
 
 nextButton.addEventListener('click', handleNextQuestion);
