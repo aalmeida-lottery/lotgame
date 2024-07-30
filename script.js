@@ -169,7 +169,7 @@
 
 
 
-let questions = []
+let questions = [];
 const questionContainer = document.getElementById('question-container');
 const questionElement = document.getElementById('question');
 const answerButtonsElement = document.getElementById('answer-buttons');
@@ -186,17 +186,26 @@ let selectedAnswer = null;
 let hasAnswered = false;
 
 function startGame() {
-    currentQuestionIndex = 0;
-    score = 0;
-    selectedAnswer = null;
-    hasAnswered = false;
-    nextButton.classList.add('hide');
-    nextButton.style.display = ''; // Ensure the Next button is reset to its default display property
-    feedbackElement.classList.add('hide');
-    feedbackElement.innerText = '';
-    resultContainer.style.display = 'none';
-    questionContainer.style.display = 'block';
-    showQuestion(questions[currentQuestionIndex]);
+    fetch('./questions.json')
+    .then(response => response.json())
+    .then(data => {
+        // console.log(data);
+        // console.log(data[0]);
+        questions = data;
+        // console.log(questions.length);
+        currentQuestionIndex = 0;
+        score = 0;
+        selectedAnswer = null;
+        hasAnswered = false;
+        nextButton.classList.add('hide');
+        nextButton.style.display = ''; // Ensure the Next button is reset to its default display property
+        feedbackElement.classList.add('hide');
+        feedbackElement.innerText = '';
+        resultContainer.style.display = 'none';
+        questionContainer.style.display = 'block';
+        showQuestion(questions[currentQuestionIndex]);
+    })
+    .catch(error => console.error('Error fetching questions:', error));
 }
 
 function showQuestion(question) {
@@ -286,47 +295,27 @@ function showResult() {
     scoreElement.innerText = `Your score: ${score}/${questions.length} (${percentage.toFixed(2)}%)`;
     if (percentage >= 80) {
         resultMessage.innerText = 'Congratulations, you passed!';
-        // Trigger confetti
-        confetti({
-            particleCount: 100,
-            spread: 70,
-            origin: { y: 0.6 }
-        });
     } else {
-        resultMessage.innerText = 'Sorry, you did not pass. \nYou need a score of 80% or higher to pass. \nBetter luck next time!';
+        resultMessage.innerText = 'Sorry, you did not pass. Better luck next time! You need a score of 80% or higher to pass.';
     }
 }
 
-function shuffleArray(array) {
-    for (let i = array.length - 1; i > 0; i--) {
-        const j = Math.floor(Math.random() * (i + 1));
-        [array[i], array[j]] = [array[j], array[i]];
-    }
-    return array;
-}
-
-function selectRandomQuestions(allQuestions, numQuestions) {
-    const shuffled = shuffleArray([...allQuestions]);
-    return shuffled.slice(0, numQuestions);
-}
-
-restartButton.addEventListener('click', () => {
-    fetch('/questions.json')
-        .then(response => response.json())
-        .then(data => {
-            questions = selectRandomQuestions(data, 5);
-            startGame();
-        })
-        .catch(error => console.error('Error fetching questions:', error));
-});
+// restartButton.addEventListener('click', () => {
+//     fetch('/questions')
+//         .then(response => response.json())
+//         .then(data => {
+//             questions = data;
+//             startGame();
+//         })
+//         .catch(error => console.error('Error fetching questions:', error));
+// });
 
 fetch('/questions.json')
     .then(response => response.json())
     .then(data => {
-        questions = selectRandomQuestions(data, 5);
-        startGame();
+        questions = data;
+        // startGame();
     })
     .catch(error => console.error('Error fetching questions:', error));
 
 nextButton.addEventListener('click', handleNextQuestion);
-
