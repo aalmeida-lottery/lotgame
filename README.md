@@ -126,7 +126,30 @@ To add new questions to the quiz, follow these steps:
    - `answer`: the correct answer (must match one of the options).
    - `correct_explanation` (optional): an explanation for the correct answer.
    - `incorrect_explanation` (optional): an explanation for the incorrect answer.
-5. Click the "Commit changes" button to save your changes.
+
+5. For multiple-choice:
+   ```json
+   {
+      "question": "Your question text here?",
+      "type": "multiple-choice",
+      "options": ["Option 1", "Option 2", "Option 3", "Option 4"],
+      "answer": "Correct answer here"
+   }
+   ```
+
+6. For True/False:
+   ```json
+   {
+      "question": "Your question text here?",
+      "type": "true-false",
+      "options": ["True", "False"],
+      "answer": "Correct answer here"
+      "correct_explanation": "Explain why this is the correct answer (optional)",
+      "incorrect_explanation": "Explain why this is the incorrect answer  (optional)"
+   }
+   ```   
+
+7. Click the "Commit changes" button to save your changes.
 
 
 
