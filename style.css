@@ -75,3 +75,8 @@
     margin-top: 20px;
     font-weight: bold;
 }
+
+#question-counter {
+ font-size: 0.8em;
+ margin-bottom: 15px;
+}
