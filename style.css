@@ -75,3 +75,13 @@
     margin-top: 20px;
     font-weight: bold;
 }
+
+#question-counter {
+ font-size: 0.9em;
+ margin-bottom: 15px;
+}
+
+#question {
+ font-size: 1.2em;
+ margin-bottom: 20px;
+}
