@@ -45,7 +45,7 @@ function startGame() {
     fetch('./questions.json') // fetch questions from the json file
     .then(response => response.json())
     .then(data => {
-        questions = selectRandomQuestions(data, 3); // select 12 random questions
+        questions = selectRandomQuestions(data, 12); // select 12 random questions
         currentQuestionIndex = 0;
         score = 0;
         selectedAnswer = null;
